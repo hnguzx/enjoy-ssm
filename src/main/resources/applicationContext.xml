@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--    开启注解扫描-->
+    <context:annotation-config/>
+    <!--    需要扫描的包-->
+    <context:component-scan base-package="cn.guzx.controller"/>
+
+    <!--    数据库连接池-->
+    <context:property-placeholder location="classpath:db.properties"/>
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--    注入SqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:SqlMapConfig.xml"/>
+    </bean>
+
+    <!--    自动扫描Mapper-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.guzx.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!--    可以用这个替代注解的处理器映射器和适配器-->
+    <!--    可以直接通过conversion-service加载转换器-->
+    <!--        <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>-->
+
+    <!--    配置处理器映射器-->
+    <!--    注解处理器映射器-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean>
+
+    <!--    配置处理器适配器-->
+
+    <!--    注解处理器适配器-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <!--        自定义属性编辑器-->
+        <property name="webBindingInitializer" ref="customBinder"></property>
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--    配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>-->
+    </bean>
+
+    <!--    图片上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--        设置上传图片最大值-->
+        <property name="maxUploadSize">
+            <value>1024</value>
+        </property>
+    </bean>
+    <!--    事务管理-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--    通知-->
+    <tx:advice id="transactionInterceptor" transaction-manager="transactionManager">
+        <!--        进行事务管理的方法-->
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+    <!--    aop通知-->
+    <aop:config>
+        <aop:advisor advice-ref="transactionInterceptor" pointcut="execution(* cn.guzx.service.*.*(..))"/>
+    </aop:config>
+
+    <!-- 转换器 -->
+    <bean id="conversionService"
+          class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="cn.guzx.utils.CustomDateConverter"/>
+                <bean class="cn.guzx.utils.StringTrimConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 自定义webBinder -->
+    <bean id="customBinder"
+          class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+        <!--        可以注入自定义的属性编辑器，自定义的转换器-->
+
+        <!-- 使用converter进行参数转 -->
+        <property name="conversionService" ref="conversionService"/>
+        <!--        配置校验器-->
+        <property name="validator" ref="validator"/>
+
+        <!-- propertyEditorRegistrars用于属性编辑器 -->
+        <!--<property name="propertyEditorRegistrars">
+            <list>
+                <ref bean="customPropertyEditor"/>
+            </list>
+        </property>-->
+    </bean>
+
+    <!-- 校验器 -->
+    <bean id="validator"
+          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <!-- 校验器 -->
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+        <!-- 指定校验使用的资源文件，如果不指定则默认使用classpath下的ValidationMessages.properties -->
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+    <!-- 校验错误信息配置文件 -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <!-- 资源文件名 -->
+        <property name="basenames">
+            <list>
+                <value>classpath:CustomValidationMessages</value>
+            </list>
+        </property>
+        <!-- 资源文件编码格式 -->
+        <property name="fileEncodings" value="utf-8"/>
+        <!-- 对资源文件内容缓存时间，单位秒 -->
+        <property name="cacheSeconds" value="120"/>
+    </bean>
+
+
+</beans>

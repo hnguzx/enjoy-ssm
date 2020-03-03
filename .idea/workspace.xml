@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7475c630-aa66-4533-b407-1916eabcf523" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="alwaysUpdateSnapshots" value="true" />
+        <option name="mavenHome" value="D:/apache-maven-3.6.3-bin/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="D:\apache-maven-3.6.3-bin\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1YZ8C7srPcjBs2ipQCqHILIJijP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/resources" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gant" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\enjoy_ssm\src\test\resources" />
+      <recent name="D:\Projects\enjoy_ssm\src\test\java" />
+      <recent name="D:\Projects\enjoy_ssm\src\main\java\cn\test" />
+      <recent name="D:\Projects\enjoy_ssm\src\main\java\cn\guzx\service" />
+      <recent name="D:\Projects\enjoy_ssm\src\main\java\cn\guzx\model" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7475c630-aa66-4533-b407-1916eabcf523" name="Default Changelist" comment="" />
+      <created>1583138627722</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583138627722</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="423" y="166" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583240342811">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="423" y="166" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1583240342811" />
+    <state x="488" y="289" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1583140161920">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="289" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1366.728@0.0.1366.728" timestamp="1583140161920" />
+    <state x="462" y="105" key="FileChooserDialogImpl" timestamp="1583141348959">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="462" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1583141348959" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1583141353515">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1583141353515" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1583141353515">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1583141353515" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1583141353515">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1583141353515" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1583141353515">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1583141353515" />
+    <state x="184" y="6" key="SettingsEditor" timestamp="1583139203578">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1583139203578" />
+    <state x="57" y="59" key="new project wizard" timestamp="1583141350651">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="57" y="59" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1583141350651" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1583239592410">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1583239592410" />
+  </component>
+</project>
