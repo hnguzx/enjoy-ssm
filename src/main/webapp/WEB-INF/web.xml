@@ -4,4 +4,43 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <!--    配置文件分层-->
+  <!--<context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/classes/spring/applicationContext.xml,/WEB-INF/classes/spring/applicationContext-*.xml</param-value>
+  </context-param>
+
+  <listener>
+      <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>-->
+
+  <!--    对post乱码进行处理-->
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>utf-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+  <servlet>
+    <servlet-name>applicationContext</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <!--配置文件的地址，默认查找的是classpath：servlet的名称+'-servlet.xml',即springMvc-servlet.xml-->
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:applicationContext.xml</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>applicationContext</servlet-name>
+    <!--        <url-pattern>*.action</url-pattern>-->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
 </web-app>
